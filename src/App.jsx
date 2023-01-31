@@ -2,28 +2,48 @@ import { useState } from 'react'
 import './App.css'
 
 function App() {
-  const [fruits, setfruits] = useState([
-    {id:1,nom: "pamplimouse"},
-    {id:2,nom: "pamplimouse"},
-    {id:3,nom: "pamplimouse"},
-    {id:4,nom: "pamplimouse"},
-    {id:5,nom: "pamplimouse"}
-  ])
+  const [fruits, setFruits] = useState([
+    {id:1,nom: "Banane"},
+    {id:2,nom: "Orange"},
+    {id:3,nom: "Mangue"},
+    {id:4,nom: "Cirton"},
+    {id:5,nom: "Pome"}
+  ]);
+  const [newFruit, setNewFruit]= useState("");
 
+  const handleDelete = (id)=>{
+    console.log(id);
+      const frutCopy= [...fruits]
+
+      const fruitUpdate = frutCopy.filter((fruit)=> fruit.id !== id)
+
+      setFruits(fruitUpdate)
+
+  }
+  const hadleSubmit = (e)=>{
+      e.preventDefault();
+      setNewFruit("")
+    }
+    const handleChange =(e) => {
+      setNewFruit(e.target.value)
+      console.log(newFruit);
+  }
   return (
     <div className="App">
-      <p>le fruit Sont :</p>
+      <p>les fruits Sont :</p>
       <ul >
         {fruits.map((fruit)=>(
-          <li key={fruit.id}>{fruit.nom} <button className='dlt'>x</button></li>
-
+          <li key={fruit.id}>{fruit.nom} <button className='dlt' onClick={()=>handleDelete(fruit.id)}>x</button></li>
         ))}
-        
-
       </ul>
-      
-      
-      
+      <form action="submit" onSubmit={hadleSubmit} >
+        <input 
+        type="text" 
+        placeholder='ajouter un fuit'
+        value={newFruit}
+        onChange={handleChange}
+        /><button >Add</button>
+      </form>
     </div>
   )
 }
