@@ -21,10 +21,17 @@
 }
 
 .card {
+  bottom: 1px bold white;
   padding: 2em;
 }
 .dlt{
   width: 20px;
   height: 30px;
   font-size: 15px;
+  position: relative;
+  left: 20px;
+  margin: 5px;
+}
+button{
+  border: 0px;
 }
