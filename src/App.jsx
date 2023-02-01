@@ -22,6 +22,16 @@ function App() {
   }
   const hadleSubmit = (e)=>{
       e.preventDefault();
+      const fruitCopy=[...fruits];
+
+      const id = new Date().getTime()
+      const nom = newFruit
+
+      fruitCopy.push({id, nom});
+
+      setFruits(fruitCopy)
+
+
       setNewFruit("")
     }
     const handleChange =(e) => {
@@ -33,7 +43,7 @@ function App() {
       <p>les fruits Sont :</p>
       <ul >
         {fruits.map((fruit)=>(
-          <li key={fruit.id}>{fruit.nom} <button className='dlt' onClick={()=>handleDelete(fruit.id)}>x</button></li>
+          <li key={fruit.id}>{fruit.nom}<button className='dlt' onClick={()=>handleDelete(fruit.id)}>x</button></li>
         ))}
       </ul>
       <form action="submit" onSubmit={hadleSubmit} >
