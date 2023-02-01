@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import Fruits from './components/Fruits';
 
 function App() {
   const [fruits, setFruits] = useState([
@@ -26,24 +27,28 @@ function App() {
 
       const id = new Date().getTime()
       const nom = newFruit
+      const fruitAAjouter = {id, nom}
+      if (newFruit.trim().length > 2){
+        fruitCopy.push(fruitAAjouter);
+        setFruits(fruitCopy);
+        setNewFruit("")
+      }
 
-      fruitCopy.push({id, nom});
-
-      setFruits(fruitCopy)
-
-
-      setNewFruit("")
     }
-    const handleChange =(e) => {
-      setNewFruit(e.target.value)
-      console.log(newFruit);
+  const handleChange =(e) => {
+      setNewFruit(e.target.value);
   }
   return (
     <div className="App">
       <p>les fruits Sont :</p>
       <ul >
         {fruits.map((fruit)=>(
-          <li key={fruit.id}>{fruit.nom}<button className='dlt' onClick={()=>handleDelete(fruit.id)}>x</button></li>
+          < Fruits
+            fruit={fruit}
+            onClick={()=>handleDelete(fruit.id)}
+            key={fruit.id}
+          
+          />
         ))}
       </ul>
       <form action="submit" onSubmit={hadleSubmit} >
